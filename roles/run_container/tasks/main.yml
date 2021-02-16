@@ -8,3 +8,17 @@
     - "{{image_port}}:80"
     volumes:
     - "{{ volume_path }}:{{ volume_dest }}"
+
+- name: Get website
+  uri: 
+    url: http://127.0.0.1:8080
+    return_content: yes
+  register: response
+
+- name: Print website response
+  debug:
+    var: response
+
+
+
+  
