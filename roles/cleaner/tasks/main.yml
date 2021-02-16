@@ -1,0 +1,41 @@
+- name: Uninstall docker
+  dnf:
+    name: docker-ce
+    state: absent
+
+- name: Uninstall docker-ce-cli
+  dnf:
+    name: docker-ce-cli
+    state: absent
+
+- name: Uninstall containerd.io
+  dnf:
+    name: containerd.io
+    state: absent
+
+- name: Remove docker files
+  file:
+    path: /var/lib/docker
+    state: absent
+
+- name: Remove python and pip and registry volumes
+  block:
+    - name: Remove docker for python
+      pip: 
+        name: docker
+        state: absent
+
+    - name: Remove pip
+      dnf:
+        name: python3-pip
+        state: absent
+
+    - name: Remove registry volumes
+      file:
+        path: /u01/volumes/registry
+        state: absent
+  when: full_remove == true
+
+
+
+

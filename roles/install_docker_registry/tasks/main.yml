@@ -19,21 +19,21 @@
   retries: "{{ retry_number }}"
   delay: "{{ pause_delay }}"
 
-- name: install pip
+- name: Install pip
   dnf:
     name: python3-pip
     state: latest
 
-- name: install docker for python
+- name: Install docker for python
   pip:
     name: docker
 
-- name: pull repo image
+- name: Pull registry image
   docker_image:
     name: registry:2.7.1
     source: pull
 
-- name: start repo
+- name: Start registry container
   docker_container:
     name: registry
     image: registry:2.7.1

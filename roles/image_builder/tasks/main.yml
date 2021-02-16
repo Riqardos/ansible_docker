@@ -1,23 +1,21 @@
-- name: create dockerfile from template
+- name: Create dockerfile from template
   ansible.builtin.template:
     src: docker_temp.j2
-    dest: "{{ role_path }}/files/Dockerfile"
+    dest: "~/Dockerfile"
 
-- name: Copy Dockerfile
-  copy:
-    src: Dockerfile
-    dest: ~/Dockerfile
-    owner: root
-    group: root
-    mode: '0644'
+- name: Create directory
+  file:
+    path: /var/www/html
+    state: directory
 
 - name: Copy Index.html
   copy:
     src: index.html
-    dest: ~/index.html
+    dest: /var/www/html/index.html
     owner: root
     group: root
     mode: '0644'
+
 #"{{ role_path }}/files"
 - name: Build image from Dockerfile
   docker_image:
@@ -37,13 +35,13 @@
     force_tag: yes #to force image pushing into repository
     source: local
 
-- name: remove old image
+- name: Remove old image
   docker_image:
     name: "{{image_name}}"
     state: absent
 
-- name: remove httpd image
+- name: Remove centos:8 image
   docker_image:
-    name: httpd
-    tag: '2.4'
+    name: centos
+    tag: '8'
     state: absent

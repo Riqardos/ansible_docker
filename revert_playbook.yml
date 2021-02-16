@@ -1,0 +1,7 @@
+---
+- name: Revert state
+  hosts: all
+  vars: 
+    full_remove: true
+  roles:
+    - cleaner

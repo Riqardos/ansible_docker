@@ -1,0 +1,7 @@
+---
+- name: Docker assignment
+  hosts: all
+  roles:
+    - install_docker_registry
+    - image_builder
+    - run_container
