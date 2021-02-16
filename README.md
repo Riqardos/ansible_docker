@@ -6,9 +6,9 @@
 - Create `hosts.yml` file inside this root directory to define remote hosts [DOCs](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
 
 ### Roles:
-- registry - installs Docker and runs Registry container 
-- builder - defines Dockerfile, which will be used by building Image and this image will be pushed to already created registry container
-- starter - starts container, based on created Image in local registry
+- install_docker_registry - installs Docker and runs Registry container 
+- image_builder - defines Dockerfile, which will be used by building Image and this image will be pushed to already created registry container
+- run_container - starts container, based on created Image in local registry
 - cleaner - reverts all to default state
 
 ### Playbooks:
@@ -16,7 +16,7 @@
 - revert_playbook - runs cleaner role
 
 ### Config:
-- TODO
+- in each role, is located config file with role's config options
 
 ### Examples: 
 
