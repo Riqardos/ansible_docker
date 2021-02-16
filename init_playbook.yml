@@ -1,5 +1,5 @@
 ---
-- name: Docker assignment
+- name: Install Docker
   hosts: all
   roles:
     - install_docker_registry

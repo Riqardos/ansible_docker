@@ -40,7 +40,7 @@
     name: "{{image_name}}"
     state: absent
 
-- name: Remove centos:8 image
+- name: remove centos:8 image
   docker_image:
     name: centos
     tag: '8'
